@@ -39,13 +39,18 @@ switch (commandSelect) {
 }
 
 function findMusic(keyWord) {
-    console.log("LIRI : Let me see if I can find that song for you");
+    if (keyWord === "Right Brigade") {
+        console.log("LIRI : Ummm....okay...I don't want to tell you what to do, but Bad Brains...again...");
+    } else
+        console.log("LIRI : Let me see if I can find that song for you");
     music.search({ type: 'track', query: keyWord }, function(err, data) {
+
         if (err) {
+
             console.log('Error occurred: ' + err);
             return;
         }
-        console.log("LIRI : Found it, here is all the info and I even found a link for you");
+        console.log("LIRI : Found it, here is all the info on " + data.tracks.items[0].name + " and I even found a link for you");
         console.log("Song : ", data.tracks.items[0].name);
         console.log("Album : ", data.tracks.items[0].album.name);
         console.log("Artist : ", data.tracks.items[0].album.artists[0].name);
@@ -54,12 +59,15 @@ function findMusic(keyWord) {
 }
 
 function findMovies(keyWord) {
-    console.log("LIRI : Okay, I'll search for that movie for you");
+    if (keyWord === "Chinatown") {
+        console.log("LIRI : Wow...again with the Chinatown...you know other movies exist right?");
+    } else
+        console.log("LIRI : Okay, I'll search for that movie for you");
     request("http://www.omdbapi.com/?t=" + keyWord + "&y=&plot=short&r=json", function(error, response, body) {
         if (error) {
             console.log('error:', error);
         } else {
-            console.log("LIRI : All done! Here's what I found for you");
+            console.log("LIRI : All done! Here's what I found about " + JSON.parse(body).Title);
             console.log("Movie : ", JSON.parse(body).Title);
             console.log("Rated : ", JSON.parse(body).Rated);
             console.log("Released : ", JSON.parse(body).Released);
@@ -70,7 +78,7 @@ function findMovies(keyWord) {
 }
 
 function findTweets() {
-    console.log("LIRI : Okay, I'll find your latest tweets for you, give me one second");
+    console.log("LIRI : Vain much?!? Okay fine, I guess I'll find your latest tweets for you, give me one second");
     var client = new Twitter({
         consumer_key: keys.twitterKeys.consumer_key,
         consumer_secret: keys.twitterKeys.consumer_secret,
@@ -80,7 +88,7 @@ function findTweets() {
 
     var params = { screen_name: 'RobotsFeelPain' };
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
-        console.log("LIRI : Done, here is what I could find!");
+        console.log("LIRI : Done, here is what you have been tweeting @" + params.screen_name);
         for (var index = 0; index < tweets.length; index++) {
             console.log(tweets[index].text);
         }
