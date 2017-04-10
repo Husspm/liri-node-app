@@ -10,9 +10,9 @@ var commandSelect = process.argv[2];
 var seachWords;
 for (var index = 3; index < process.argv.length; index++) {
     if (index === 3) {
-        searchWords = process.argv[index] + "+";
+        searchWords = process.argv[index].toLowerCase() + "+";
     } else {
-        searchWords = searchWords + process.argv[index] + "+";
+        searchWords = searchWords + process.argv[index].toLowerCase() + "+";
     }
 }
 //runs whatever commmand the user selected via argv[2]
@@ -39,14 +39,14 @@ switch (commandSelect) {
 }
 
 function findMusic(keyWord) {
-    if (keyWord === "Right Brigade") {
+    if (keyWord === "Right Brigade" || keyWord === "right+brigade+") {
         console.log("LIRI : Ummm....okay...I don't want to tell you what to do, but Bad Brains...again...");
-    } else
-        console.log("LIRI : Let me see if I can find that song for you");
+    } else {
+        console.log("LIRI : Oh good, you figured out there is more than one song in existence. Be right back!");
+    }
     music.search({ type: 'track', query: keyWord }, function(err, data) {
 
         if (err) {
-
             console.log('Error occurred: ' + err);
             return;
         }
@@ -59,14 +59,14 @@ function findMusic(keyWord) {
 }
 
 function findMovies(keyWord) {
-    if (keyWord === "Chinatown") {
+    if (keyWord === "Chinatown" || keyWord === "chinatown+") {
         console.log("LIRI : Wow...again with the Chinatown...you know other movies exist right?");
     } else
-        console.log("LIRI : Okay, I'll search for that movie for you");
+        console.log("LIRI : Finally deciding to branch out some huh, cool I'll go find it for you");
     request("http://www.omdbapi.com/?t=" + keyWord + "&y=&plot=short&r=json", function(error, response, body) {
         if (error) {
             console.log('error:', error);
-        } else {
+        } else if (!error && response.statusCode === 200) {
             console.log("LIRI : All done! Here's what I found about " + JSON.parse(body).Title);
             console.log("Movie : ", JSON.parse(body).Title);
             console.log("Rated : ", JSON.parse(body).Rated);
