@@ -21,7 +21,7 @@ switch (commandSelect) {
         if (process.argv[3]) {
             search = searchWords;
         } else {
-            search = "Right Brigade";
+            search = "right+brigade+";
         }
         findMusic(search);
         break;
@@ -29,7 +29,7 @@ switch (commandSelect) {
         if (process.argv[3]) {
             search = searchWords;
         } else {
-            search = "Chinatown";
+            search = "chinatown+";
         }
         findMovies(search);
         break;
@@ -39,7 +39,7 @@ switch (commandSelect) {
 }
 
 function findMusic(keyWord) {
-    if (keyWord === "Right Brigade" || keyWord === "right+brigade+") {
+    if (keyWord === "right+brigade+") {
         console.log("LIRI : Ummm....okay...I don't want to tell you what to do, but Bad Brains...again...");
     } else {
         console.log("LIRI : Oh good, you figured out there is more than one song in existence. Be right back!");
@@ -59,10 +59,10 @@ function findMusic(keyWord) {
 }
 
 function findMovies(keyWord) {
-    if (keyWord === "Chinatown" || keyWord === "chinatown+") {
+    if (keyWord === "chinatown+") {
         console.log("LIRI : Wow...again with the Chinatown...you know other movies exist right?");
     } else
-        console.log("LIRI : Finally deciding to branch out some huh, cool I'll go find it for you");
+        console.log("LIRI : Finally deciding to branch out some huh, cool I'll go find that for you");
     request("http://www.omdbapi.com/?t=" + keyWord + "&y=&plot=short&r=json", function(error, response, body) {
         if (error) {
             console.log('error:', error);
