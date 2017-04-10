@@ -40,9 +40,14 @@ switch (commandSelect) {
 
 function findMusic(keyWord) {
     if (keyWord === "right+brigade+") {
-        console.log("LIRI : Ummm....okay...I don't want to tell you what to do, but Bad Brains...again...");
+        console.log("LIRI : Ummm....okay...I don't want to tell you what to do, but Bad Brains...again...whatever..you're the (self described) 'boss'");
+        sarcasticRemark = "for the thousandth time!";
+        sarcasticRemark2 = "cause you never get tired of making me do this";
+
     } else {
-        console.log("LIRI : Oh good, you figured out there is more than one song in existence. Be right back!");
+        sarcasticRemark = "now that you decided that you wanted to hear one of the other 5 trillion songs I can find for you";
+        sarcasticRemark2 = "...please don't make me search for right brigade ever agian!";
+        console.log("LIRI : Oh good, you figured out there is more than one song in existence(finally). Be right back!");
     }
     music.search({ type: 'track', query: keyWord }, function(err, data) {
 
@@ -50,7 +55,7 @@ function findMusic(keyWord) {
             console.log('Error occurred: ' + err);
             return;
         }
-        console.log("LIRI : Found it, here is all the info on " + data.tracks.items[0].name + " and I even found a link for you");
+        console.log("LIRI : Found it, here is all the info on " + data.tracks.items[0].name + " " + sarcasticRemark + " and I even found a link for you " + sarcasticRemark2);
         console.log("Song : ", data.tracks.items[0].name);
         console.log("Album : ", data.tracks.items[0].album.name);
         console.log("Artist : ", data.tracks.items[0].album.artists[0].name);
