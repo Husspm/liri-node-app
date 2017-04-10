@@ -36,8 +36,11 @@ switch (commandSelect) {
     case "my-tweets":
         findTweets();
         break;
+    case "help-me":
+        helpLiri();
+        break;
 }
-
+//Liri learned sarcasm
 function findMusic(keyWord) {
     if (keyWord === "right+brigade+") {
         console.log("LIRI : Ummm....okay...I don't want to tell you what to do, but Bad Brains...again...whatever..you're the (self described) 'boss'");
@@ -98,4 +101,9 @@ function findTweets() {
             console.log(tweets[index].text);
         }
     });
+}
+
+function helpLiri() {
+    console.log("LIRI : HELP ME PLEASE");
+    helpLiri();
 }
